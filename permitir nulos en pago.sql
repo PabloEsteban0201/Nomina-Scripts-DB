@@ -14,11 +14,3 @@ ALTER TABLE payments MODIFY (TOTAL_LICENSES NULL);
 ALTER TABLE payments MODIFY (TOTAL_TAXES NULL);
 ALTER TABLE payments MODIFY (TOTAL NULL);
 ALTER TABLE payments MODIFY (PERIOD NULL);
-
-ALTER TABLE paymentconcepts MODIFY (amount NULL);
-
-ALTER TABLE payments
-ADD finished number NULL;
-
-ALTER TABLE type_concept
-RENAME COLUMN type TO name_type;

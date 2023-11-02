@@ -39,6 +39,10 @@ INSERT INTO type_concept VALUES (3,'Vacaciones',70.0,'LICENCIAS');
 INSERT INTO type_concept VALUES (4,'Licencia de maternidad',80.0,'LICENCIAS');
 INSERT INTO type_concept VALUES (5,'Licencia de incapacidad',80.0,'LICENCIAS');
 
+INSERT INTO type_concept VALUES (6,'Impuesto basico',3.0,'IMPUESTOS');
+INSERT INTO type_concept VALUES (7,'Retefuente',5.0,'RETENCIONES');
+
+
 --Insert in user
 
 INSERT into usermanager values (1,'NominaGestor','abril2');
