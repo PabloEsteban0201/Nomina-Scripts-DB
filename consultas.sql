@@ -64,4 +64,56 @@ select from employees where ;
 
 select * from payments where payments.employee_fk = 81 and finished = 0;
 
+select pc.amount, tc.name_concept from paymentconcepts PC
+inner join type_concept TC ON pc.type_concept_fk = tc.concept_id
+where pc.payment_fk=33 and
+pc.concept_id=70;
 
+--INNER JOIN charges CHA ON e.charge_fk = cha.charge_id
+
+SELECT  pc.concept_id from paymentconcepts PC, type_concept TC where pc.payment_fk=33 and
+pc.type_concept_fk=tc.concept_id;
+
+
+--Obtener el paymentDetailDto
+
+select p.payment_id as paymentId, e.name_person as namePerson,
+e.lastname as lastname, 
+e.personal_number as personalNumber,
+e.salary as salary,
+p.total_retentions + p.total_taxes as discounts,
+p.total_benefits+p.total_licenses as additions,
+p.total as total
+from employees E inner join payments P ON e.employee_id = p.employee_fk 
+where e.personal_number = 123;
+
+--Get the employeesDto selected
+SELECT e.name_person,e.lastname, e.personal_number, com.name_company, 
+cha.name_charge, e.salary, e.email, e.state
+FROM employees E 
+INNER JOIN charges CHA ON e.charge_fk = cha.charge_id
+INNER JOIN companies COM ON e.company_fk = com.company_id and 
+e.personal_number = 123; 
+
+
+--Get the total of registers
+SELECT COUNT(*) FROM employees;
+
+--get All Name Benefits
+select name_concept from type_concept where name_type ='PRESTACIONES';
+
+--get liquidations dto
+SELECT
+    e.name_person     AS nameperson,
+    e.lastname        AS lastname,
+    e.personal_number AS personalnumber,
+    e.salary          AS salary
+FROM
+    employees e
+WHERE
+    e.personal_number = 4562;
+
+--Get the concepts dto by name type
+select pc.amount, tc.name_concept from paymentconcepts PC
+inner join type_concept TC ON pc.type_concept_fk = tc.concept_id
+where pc.payment_fk=41 and tc.name_type='RETENCIONES';
