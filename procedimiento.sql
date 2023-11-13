@@ -1,4 +1,4 @@
-create or replace NONEDITIONABLE PROCEDURE PR_AMOUNT_PAYCONCEPT (in_personal_number NUMBER, in_pay_id NUMBER)     
+create or replace NONEDITIONABLE PROCEDURE PR_AMOUNT_PAYCONCEPT (in_employee_id NUMBER)     
 IS
    --variables
     var_salary employees.salary%type;

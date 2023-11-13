@@ -22,3 +22,6 @@ ADD finished number NULL;
 
 ALTER TABLE type_concept
 RENAME COLUMN type TO name_type;
+
+ALTER TABLE employees
+MODIFY (abb_currency VARCHAR2(5));

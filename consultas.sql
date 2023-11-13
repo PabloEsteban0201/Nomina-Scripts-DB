@@ -117,3 +117,112 @@ WHERE
 select pc.amount, tc.name_concept from paymentconcepts PC
 inner join type_concept TC ON pc.type_concept_fk = tc.concept_id
 where pc.payment_fk=41 and tc.name_type='RETENCIONES';
+
+
+
+--para obtener la currency
+SELECT e.name_person,e.lastname, e.personal_number, com.name_company, 
+cha.name_charge, e.salary,e.email, e.state, curr.abbreviation
+FROM employees E 
+INNER JOIN charges CHA ON e.charge_fk = cha.charge_id
+INNER JOIN companies COM ON e.company_fk = com.company_id 
+inner join countries COUN on com.country_code_fk = coun.code_id
+inner join currency CURR on coun.code_curr_fk = curr.code_curr_id
+order by e.employee_id OFFSET (&pageindex*2) ROWS FETCH NEXT 2 ROWS ONLY; 
+
+SELECT e.name_person as namePerson, e.lastname as lastname, e.personal_number as personalNumber, e.salary as salary, 
+curr.abbreviation as currency
+FROM employees E 
+INNER JOIN companies COM ON e.company_fk = com.company_id 
+inner join countries COUN on com.country_code_fk = coun.code_id 
+inner join currency CURR on coun.code_curr_fk = curr.code_curr_id 
+where 
+e.personal_number = 127 ;
+
+
+select Curr.abbreviation from currency curr
+inner join countries coun on coun.code_curr_fk = curr.code_curr_id
+inner join companies com on com.country_code_fk = coun.code_id 
+where
+com.company_id = 1;
+
+
+--
+ SELECT
+    p.payment_id                        AS paymentid,
+    e.name_person                       AS nameperson,
+    e.lastname                          AS lastname,
+    e.personal_number                   AS personalnumber,
+    e.salary                            AS salary,
+    e.abb_currency                      AS currency,
+    p.total_retentions + p.total_taxes  AS discounts,
+    p.total_benefits + p.total_licenses AS additions,
+    p.total                             AS total,
+    p.pay_date                          AS paydate,
+    tp.description                      AS period
+FROM
+         employees e
+    INNER JOIN payments p ON e.employee_id = p.employee_fk
+    INNER JOIN type_period tp ON p.type_period_fk = tp.period_id
+WHERE
+    e.personal_number = :personal_number and p.finished = 1;
+    
+    --
+    
+SELECT e.name_person as namePerson ,e.lastname as lastname, 
+e.personal_number as personalNumber, com.name_company as nameCompany, 
+cha.name_charge as nameCharge, e.salary as salary, e.email as email, e.state as state
+FROM employees e 
+INNER JOIN charges CHA ON e.charge_fk = cha.charge_id
+INNER JOIN companies com ON e.company_fk = com.company_id 
+left JOIN payments P ON e.employee_id = p.employee_fk
+
+
+minus
+
+(select e.name_person,e.lastname, e.personal_number, com.name_company, 
+cha.name_charge, e.salary, e.email, e.state
+FROM employees E
+INNER JOIN charges CHA ON e.charge_fk = cha.charge_id
+INNER JOIN companies COM ON e.company_fk = com.company_id 
+inner join payments P on e.employee_id = p.employee_fk
+where p.finished=0)
+
+order by personalNumber OFFSET (&pageindex*10) ROWS FETCH NEXT 10 ROWS ONLY ;
+
+
+
+SELECT e.name_person as namePerson, e.lastname as lastname, 
+	    		 e.personal_number as personalNumber, com.name_company as nameCompany, 
+	    		 cha.name_charge as nameCharge,  e.salary as salary, e.abb_currency as currency, e.email as email, e.state as state 
+	    		 FROM employees e  
+	    		 INNER JOIN charges CHA ON e.charge_fk = cha.charge_id 
+	    		 INNER JOIN companies com ON e.company_fk = com.company_id  
+	    		 left JOIN payments P ON e.employee_id = p.employee_fk 
+	    		 minus 
+	    		 (select e.name_person, e.lastname, e.personal_number, com.name_company,  
+	    		 cha.name_charge, e.salary, e.abb_currency, e.email, e.state 
+	    		 FROM employees E 
+	    		 INNER JOIN charges CHA ON e.charge_fk = cha.charge_id 
+	    		 INNER JOIN companies COM ON e.company_fk = com.company_id  
+	    		 inner join payments P on e.employee_id = p.employee_fk 
+	    		 where p.finished=0) 
+	    		 order by personalNumber OFFSET (:page_index*:page_size) ROWS FETCH NEXT :page_size ROWS ONLY; 
+
+
+SELECT e.name_person as namePerson, e.lastname as lastname, 
+	    		 e.personal_number as personalNumber, com.name_company as nameCompany, 
+	    		 cha.name_charge as nameCharge,  e.salary as salary, e.abb_currency as currency, e.email as email, e.state as state 
+	    		 FROM employees e  
+	    		 INNER JOIN charges CHA ON e.charge_fk = cha.charge_id 
+	    		 INNER JOIN companies com ON e.company_fk = com.company_id  
+	    		 left JOIN payments P ON e.employee_id = p.employee_fk 
+	    		 minus 
+	    		 (select e.name_person, e.lastname, e.personal_number, com.name_company,  
+	    		 cha.name_charge, e.salary, e.abb_currency, e.email, e.state 
+	    		 FROM employees E 
+	    		 INNER JOIN charges CHA ON e.charge_fk = cha.charge_id 
+	    		 INNER JOIN companies COM ON e.company_fk = com.company_id  
+	    		 inner join payments P on e.employee_id = p.employee_fk 
+	    		 where p.finished=0) 
+	    		 order by personalNumber OFFSET (:page_index*:page_size) ROWS FETCH NEXT :page_size ROWS ONLY; 
