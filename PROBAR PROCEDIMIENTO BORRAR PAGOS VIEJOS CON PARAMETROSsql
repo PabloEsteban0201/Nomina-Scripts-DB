@@ -1,0 +1,10 @@
+DECLARE
+    v_fecha_limite DATE;
+BEGIN
+    -- Establecer la fecha límite
+    v_fecha_limite := TO_DATE('01-01-2022', 'DD-MM-YYYY');
+
+    -- Llamar al procedimiento
+    PR_DELETE_PAYMENTS_BY_DATE(v_fecha_limite);
+END;
+/

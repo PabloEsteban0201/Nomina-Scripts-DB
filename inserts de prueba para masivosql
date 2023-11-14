@@ -1,0 +1,25 @@
+
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into paymentconcepts values(null,140000,1,109);
+
+
+
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2022', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+
+
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+insert into payments values(null,TO_DATE('03-11-2021', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+
+--Para probar el procesamiento manual
+insert into payments values(null,TO_DATE('03-11-2019', 'DD-MM-YYYY'),140000,0,0,0,3640000,4,23,1);
+
+

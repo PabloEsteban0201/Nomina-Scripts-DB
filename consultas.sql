@@ -226,3 +226,6 @@ SELECT e.name_person as namePerson, e.lastname as lastname,
 	    		 inner join payments P on e.employee_id = p.employee_fk 
 	    		 where p.finished=0) 
 	    		 order by personalNumber OFFSET (:page_index*:page_size) ROWS FETCH NEXT :page_size ROWS ONLY; 
+
+--Conteo de la vista
+SELECT COUNT(*) FROM availableEmployees;
